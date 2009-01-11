@@ -1,0 +1,25 @@
+<h1><%=t :page_header, :title => @page.title %></h1>
+
+<dl class="info">
+<dt><%=t :domain %></dt><dd>
+<% if @page.domain %>
+<code><%=h @page.domain %></code>
+<% else %>
+<em><%=t :false %></em>
+<% end %>
+</dd>
+
+<dt><%=t :path %></dt><dd><code><%=h @page.path %></code></dd>
+
+<dt><%=t :route_path %></dt><dd><code><%=h @page.route_path %></code></dd>
+
+<dt><%=t :template %></dt><dd><em><%=t_boolean @page.template? %></em></dd>
+
+<dt><%=t :created %></dt><dd><%=h time_ago_in_words(@page.created_at) %> (<%=l @page.created_at, :format => :short %>)</dd>
+
+<dt><%=t :updated %></dt><dd><%=h time_ago_in_words(@page.updated_at) %> (<%=l @page.updated_at, :format => :short %>)</dd>
+</dl>
+<hr class="clearer" />
+<p><%= link_to t(:edit_record, :name => t(:page)), edit_backend_page_path(@page) %></p>
+<p><%= link_to t(:show_page_in_frontend), front_page_url(@page) %></p>
+<p><%= link_to t(:new_child_page), new_backend_page_child_path(@page) %></p>

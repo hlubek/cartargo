@@ -1,0 +1,9 @@
+<h1><%=t :edit_page_header, :title => @page.title %></h1>
+<% form_for @page, :url => { :controller => 'backend/pages', :action => 'update' } do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <p>
+    <%= f.submit t(:save) %>
+  </p>
+<% end %>
+<hr class="clearer" />
+<p><%= link_to t(:back), backend_page_path(@page) %></p>

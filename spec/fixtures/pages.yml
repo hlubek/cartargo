@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+root:
+  title: root page
+  path: root
+
+first_child:
+  title: first child page
+  path: first-child
+  parent: root
+
+domain_root:
+  title: domain root page
+  path: domain-root
+  domain: www.example.com

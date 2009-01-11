@@ -1,0 +1,44 @@
+#page-tree {
+  position: absolute;
+  width: 300px;
+  font-size: 116%;
+}
+#page-tree ul {
+  margin-top: 1em;
+  margin-left: 0.5em;
+  padding: 0.5em;
+}
+#page-tree > ul {
+  margin-top: 0;
+}
+
+#page-tree ul li {
+  list-style: none;
+  line-height: 1.5em;
+  border: 1px solid #BEDCE7;
+}
+#page-tree li.active-show > span {
+  font-weight: bold;
+}
+#page-tree li.active-edit > a {
+  font-weight: bold;
+}
+#page-content {
+  margin-left: 300px;
+}
+#page-content dl.info {
+  float: left;
+  width: 34em;
+  margin-left: 0;
+}
+#page-content dl.info dt {
+  font-weight: bold;
+  float: left;
+  width: 12em;
+}
+#page-content dl.info dd {
+  margin: 0;
+  float: left;
+  width: 22em;
+  height: 1.5em;
+}

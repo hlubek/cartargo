@@ -1,0 +1,2 @@
+$KCODE = 'u'
+require 'jcode'

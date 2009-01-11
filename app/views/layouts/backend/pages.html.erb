@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>cartargo - pages</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'backend' %>
+  <%= stylesheet_link_tag 'pages' %>
+  <%= javascript_include_tag :defaults %>
+</head>
+<body>
+<div id="page-tree">
+<p><%= link_to t(:global_page), backend_pages_path %></p>
+<%= render :partial => 'tree' if @roots %>
+</div>
+<div id="page-content">
+<%= yield %>
+</div>
+</body>
+</html>

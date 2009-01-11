@@ -1,0 +1,20 @@
+de:
+  page: Seite
+  domain: Domain
+  path: Pfad
+  created: Erstellt
+  updated: Zuletzt geändert
+  page_header: Seite "{{title}}"
+  edit_page_header: Seite "{{title}}" bearbeiten
+  new_child_page: Neue Unterseite anlegen
+  new_page_header: Neue Seite anlegen
+  global_page: Global
+  new_root_page: Neue Hauptseite
+  show_page_in_frontend: Im Frontend anzeigen
+  template: Template
+  'false': nein
+  'true': ja
+  edit_record: "{{name}} bearbeiten"
+  back: zurück
+  save: Speichern
+  
