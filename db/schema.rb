@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090111210927) do
+ActiveRecord::Schema.define(:version => 20090112230744) do
 
   create_table "attribute_definitions", :force => true do |t|
     t.integer  "content_definition_id"
@@ -20,9 +20,25 @@ ActiveRecord::Schema.define(:version => 20090111210927) do
     t.datetime "updated_at"
   end
 
+  create_table "attribute_values", :force => true do |t|
+    t.integer  "content_id"
+    t.integer  "attribute_definition_id"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "content_definitions", :force => true do |t|
     t.string   "title"
     t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contents", :force => true do |t|
+    t.integer  "page_id"
+    t.integer  "content_definition_id"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

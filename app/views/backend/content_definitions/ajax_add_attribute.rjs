@@ -1,0 +1,6 @@
+if @valid
+  page.insert_html :bottom, 'attribute_definitions', :partial => 'attribute_definition'
+  page.replace_html 'attribute_definition_errors', ''
+else
+  page.replace_html 'attribute_definition_errors', error_messages_for(:attribute_definition)
+end

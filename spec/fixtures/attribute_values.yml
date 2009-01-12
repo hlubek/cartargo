@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  content_id: 1
+  attribute_definition_id: 1
+  value: MyString
+
+two:
+  content_id: 1
+  attribute_definition_id: 1
+  value: MyString

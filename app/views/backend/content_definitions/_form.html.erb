@@ -1,0 +1,16 @@
+<% form_for [:backend, @page, @content_definition] do |f| %>
+<%= f.error_messages %>
+<dl>
+<dt><%= f.label :title %></dt>
+<dd><%= f.text_field :title %></dd>
+</dl>
+<fieldset>
+<legend><%=t :attribute_definitions %></legend>
+<div id="attribute_definitions">
+<%= f.render_associated_form(@content_definition.attribute_definitions) %>
+</div>
+<%= f.add_associated_link t(:add_attribute_definition), @content_definition.attribute_definitions.build %>
+</fieldset>
+
+<%= f.submit t(:save) %>
+<% end %>

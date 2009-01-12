@@ -1,5 +1,5 @@
 <h1><%=t :new_page_header %></h1>
-<% form_for @page, :url => @parent ? backend_page_children_path(@parent) : backend_pages_path do |f| %>
+<% form_for [:backend, @parent, @page] do |f| %>
   <%= render :partial => 'form', :locals => { :f => f } %>
   <p>
     <%= f.submit t(:save) %>

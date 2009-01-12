@@ -27,7 +27,8 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :backend do |backend|
     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
     backend.resources :pages do |page|
-      page.resources :children, :controller => 'pages'
+      page.resources :pages, :as => 'children'
+      page.resources :content_definitions
     end
   end
 

@@ -1,5 +1,14 @@
 <h1><%=t :page_header, :title => @page.title %></h1>
 
+<h2><%=t :content_definitions %></h2>
+<ul>
+<% for content_definition in @page.content_definitions %>
+<li><%= link_to h(content_definition.title), edit_backend_page_content_definition_path(@page, content_definition) %></li>
+<% end %>
+</ul>
+<%= link_to t(:new_record, :name => t(:content_definition)), new_backend_page_content_definition_path(@page) %>
+
+<h2><%=t :informations %></h2>
 <dl class="info">
 <dt><%=t :domain %></dt><dd>
 <% if @page.domain %>
@@ -20,6 +29,9 @@
 <dt><%=t :updated %></dt><dd><%=h time_ago_in_words(@page.updated_at) %> (<%=l @page.updated_at, :format => :short %>)</dd>
 </dl>
 <hr class="clearer" />
+
+
+
 <p><%= link_to t(:edit_record, :name => t(:page)), edit_backend_page_path(@page) %></p>
 <p><%= link_to t(:show_page_in_frontend), front_page_url(@page) %></p>
-<p><%= link_to t(:new_child_page), new_backend_page_child_path(@page) %></p>
+<p><%= link_to t(:new_child_page), new_backend_page_page_path(@page) %></p>

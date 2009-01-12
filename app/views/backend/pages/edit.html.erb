@@ -1,5 +1,5 @@
 <h1><%=t :edit_page_header, :title => @page.title %></h1>
-<% form_for @page, :url => { :controller => 'backend/pages', :action => 'update' } do |f| %>
+<% form_for [:backend, @page] do |f| %>
   <%= render :partial => 'form', :locals => { :f => f } %>
   <p>
     <%= f.submit t(:save) %>

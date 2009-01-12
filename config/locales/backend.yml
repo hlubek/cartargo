@@ -2,6 +2,7 @@ de:
   page: Seite
   domain: Domain
   path: Pfad
+  route_path: Routing-Pfad
   created: Erstellt
   updated: Zuletzt geändert
   page_header: Seite "{{title}}"
@@ -15,6 +16,17 @@ de:
   'false': nein
   'true': ja
   edit_record: "{{name}} bearbeiten"
+  new_record: "{{name}} anlegen"
   back: zurück
   save: Speichern
-  
+  add_attribute: Attribut hinzufügen
+  attribute_definitions: Attribut-Definitionen
+  content_definitions: Content-Definitionen
+  content_definition: Content-Definition
+  add_attribute_definition: Attribut-Definition hinzufügen
+  informations: Informationen
+  title: Titel
+  name: Name
+  type: Typ
+  options: Optionen
+  remove: entfernen  

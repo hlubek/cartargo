@@ -1,6 +1,9 @@
 class Page < ActiveRecord::Base
   acts_as_tree
   
+  has_many :content_definitions
+  has_many :contents, :order => 'position'
+  
   validates_presence_of :title
   validates_uniqueness_of :title, :scope => :parent_id
   validates_format_of :path, :with => /\A[^\s\/]*\Z/
