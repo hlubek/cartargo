@@ -1,11 +1,14 @@
 <% form_for [:backend, @page, @content] do |f| %>
 <%= f.error_messages %>
 <dl>
-<dt><%= f.label :content_definition %></dt>
-<dd><%= collection_select :content, :content_definition_id, @page.content_definitions, :id, :title %></dd>
+<dt><%= f.label t(:'contents.content_definition') %></dt>
+<dd>
+<%=h @content.content_definition.title %>
+<%= f.hidden_field :content_definition %>
+</dd>
 </dl>
 <fieldset>
-<legend><%=t :attribute_values %></legend>
+<legend><%=t :'contents.attribute_values' %></legend>
 
 <div id="attribute_values">
 <%= f.render_associated_form(@content.attribute_values) %>

@@ -45,7 +45,7 @@ h3 {
 }
 h1,h2,h3 {
 	/* top & bottom margin based on font size */
-	margin:1em 0;
+	margin:1em 0 0.5em 0;
 }
 h1,h2,h3,h4,h5,h6,strong {
 	/*bringing boldness back to headers and the strong element*/
@@ -108,7 +108,7 @@ p,fieldset,table {
  * x-small is for IE6/7 quirks mode.
  */
 body {
-	font:13px/1.231 arial,helvetica,clean,sans-serif;
+	font:13px/1.231 helvetica,arial,clean,sans-serif;
 	*font-size:small; /* for IE */
 	*font:x-small; /* for IE in quirks mode */
 }
@@ -120,7 +120,7 @@ select,
 input,
 button,
 textarea {
-	font:99% arial,helvetica,clean,sans-serif;
+	font:99% helvetica,arial,clean,sans-serif;
 }
 
 /**
@@ -159,4 +159,36 @@ div.fieldWithErrors {
 div.fieldWithErrors input {
   color: #FF4F00;
   border-color: #FF4F00;
+}
+
+
+/* Backend Controls */
+
+#page-content .yui-dt-label {
+  font-size: 85%;
+  color: #3F3F3F;
+}
+
+#page-content div.yui-dt {
+  margin-bottom: 1em;
+}
+
+div.link-control a {
+  float: left;
+  padding: 0.5em;
+  font-weight: bold;
+}
+div.link-control {
+  float: left;
+  width: 100%;
+}
+div.link-control .bd {
+  border: 1px solid #A7C1DF;
+  background-color: #EDF5FF;
+  float: left;
+}
+
+#page-content div.yuimenu {
+  position: absolute;
+  visibility: hidden;
 }

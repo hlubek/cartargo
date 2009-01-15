@@ -35,7 +35,12 @@ de:
     header: Seite "{{title}}"
     container_insert_new_record: Neuen Inhalt einfügen
     content_definitions: Content-Definitionen
+    containers: Container
+    add_content: "{{name}} einfügen"
   content_definitions:
     title: Name
     created_at: Angelegt
     updated_at: Geändert
+  contents:
+    attribute_values: Attributwerte
+    content_definition: Content-Definition

@@ -10,7 +10,8 @@ class Backend::ContentsController < ApplicationController
   end
 
   def new
-    @content = @page.contents.new(:content_definition => @page.content_definitions.first, :container => params[:container])
+    content_definition = ContentDefinition.find(params[:content_definition_id])
+    @content = @page.contents.new(:content_definition => content_definition, :container => params[:container])
     @content.content_definition.attribute_definitions.map do |ad|
       @content.attribute_values.build(:attribute_definition => ad)
     end

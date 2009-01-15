@@ -44,4 +44,10 @@
 }
 #page-content .containers .container {
   border: 1px dashed gray;
+  margin: 0.5em 0.5em 0.5em 0;
+  padding: 0.5em;
+}
+#page-content .containers .container h3 {
+  margin-top: 0;
+  color: #abc;
 }

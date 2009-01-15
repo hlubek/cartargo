@@ -3,7 +3,6 @@
 <h2><%=t :'pages.content_definitions' %></h2>
 
 <% if !@page.content_definitions.empty? %>
-
 <% render_datatable @page.content_definitions do |d| %>
   <% d.column :title, { :label => t(:'content_definitions.title'), :sortable => true } do |c| %>
     <%= link_to h(c.title), edit_backend_page_content_definition_path(@page, c) %>
@@ -12,25 +11,52 @@
     <%= c.created_at.strftime('%m/%d/%y') %>
   <% end %>
 <% end %>
-
 <% end %>
 
-
+<div class="link-control">
+<div class="bd">
 <%= link_to t(:new_record, :name => t(:content_definition)), new_backend_page_content_definition_path(@page) %>
+</div>
+</div>
+<hr class="clearer" />
 
-<h2><%=t :containers %></h2>
+<h2><%=t :'pages.containers' %></h2>
 <div class="containers">
 <% for container in @page.containers %>
 <div class="container">
 <h3><%=h container %></h3>
-<ul>
+<ul id=">
 <% for content in @page.content_by_container(container) %>
 <li><%=h content.content_definition.title %> (<%=h content['title'] %>)</li>
 <% end %>
 </ul>
-<p>
-<%= link_to t(:'pages.container_insert_new_record'), new_backend_page_content_path(@page, :container => container) %>
-</p>
+
+<script type="text/javascript">
+YAHOO.util.Event.onContentReady("<%= container %>-menu", function () {
+        var oMenu = new YAHOO.widget.Menu("<%= container %>-menu", { context: ["<%= container %>-toggle-menu", "tl", "tl"] });
+        oMenu.render();
+        YAHOO.util.Event.addListener("<%= container %>-toggle-menu", "click", oMenu.show, null, oMenu);
+});    
+</script>
+
+<div class="link-control">
+<div class="bd">
+<a href="#" id="<%= container %>-toggle-menu"><%=t :new_record, :name => t(:content) %></a>
+</div>
+</div>
+
+<div id="<%= container %>-menu" class="yuimenu">
+<div class="bd">
+<ul class="first-of-type">
+<% for content_definition in @page.inherited_content_definitions %>
+<li class="yuimenuitem"><%= link_to t(:'pages.add_content', :name => content_definition.title), new_backend_page_content_path(@page, :container => container, :content_definition_id => content_definition.id), :html => { :class => 'yuimenuitemlabel' } %></li>
+<% end %>
+</ul>
+</div>
+</div>
+
+<hr class="clearer" />
+
 </div>
 <% end %>
 </div>

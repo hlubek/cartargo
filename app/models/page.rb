@@ -22,6 +22,10 @@ class Page < ActiveRecord::Base
     contents.find_all_by_container(container, :include => :content_definition)
   end
   
+  def inherited_content_definitions
+    (parent ? parent.inherited_content_definitions : []) + content_definitions
+  end
+  
   # FIXME untested
   def template?
     !attributes['template'].blank?
