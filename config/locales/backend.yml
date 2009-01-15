@@ -23,6 +23,8 @@ de:
   attribute_definitions: Attribut-Definitionen
   content_definitions: Content-Definitionen
   content_definition: Content-Definition
+  content: Content
+  attribute_values: Attributwerte
   add_attribute_definition: Attribut-Definition hinzufügen
   informations: Informationen
   title: Titel

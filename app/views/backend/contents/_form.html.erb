@@ -1,0 +1,16 @@
+<% form_for [:backend, @page, @content] do |f| %>
+<%= f.error_messages %>
+<dl>
+<dt><%= f.label :content_definition %></dt>
+<dd><%= collection_select :content, :content_definition_id, @page.content_definitions, :id, :title %></dd>
+</dl>
+<fieldset>
+<legend><%=t :attribute_values %></legend>
+
+<div id="attribute_values">
+<%= f.render_associated_form(@content.attribute_values) %>
+</div>
+</fieldset>
+<%= f.hidden_field :container %>
+<%= f.submit t(:save) %>
+<% end %>

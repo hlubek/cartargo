@@ -17,15 +17,20 @@ describe Page do
   
   describe 'domain' do
     it 'should be an attribute' do
-      page = Page.new(@valid_attributes.merge(:domain => 'www.example.com'))
+      page = Page.new(@valid_attributes.merge(:domain => 'www.foobar.com'))
       page.should be_valid
     end
     
     # TODO spec format of domain
     
     it 'should be set from parent if blank on save' do
-      page = pages(:domain_root).children.create!(:title => 'Foo bar')
-      page.domain.should == pages(:domain_root).domain
+      root = Page.create!(:title => 'Test root', :domain => 'www.foobar.com')
+      page = root.children.create!(:title => 'Foo bar')
+      page.domain.should == root.domain
+    end
+    
+    it 'should be not forced to unique if blank' do
+		# how to test it nicely?     
     end
   end
   
@@ -39,6 +44,16 @@ describe Page do
       pages(:root).template = 'Test'
       pages(:first_child).parent = pages(:root) # This has to be set explicitly (why?)
       pages(:first_child).template.should == 'Test'	
+    end
+  end
+  
+  describe 'template containers' do
+    it 'should return the defined containers' do
+      pages(:page_with_containers).containers.should == ['main', 'left']
+    end
+    
+    it 'should be empty if the page defines no containers' do
+      pages(:page_without_containers).containers.should be_empty
     end
   end
 
@@ -139,7 +154,7 @@ describe Page do
     end
     
     it 'should be empty for page with domain' do
-      domain_page = Page.create!(:title => 'foo', :path => 'foo', :domain => 'www.example.com')
+      domain_page = Page.create!(:title => 'foo', :path => 'foo', :domain => 'www.foobar.com')
       domain_page.route_path.should be_nil
     end
     

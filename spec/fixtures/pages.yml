@@ -3,13 +3,39 @@
 root:
   title: root page
   path: root
+  route_path: root.html
 
 first_child:
   title: first child page
   path: first-child
+  route_path: root/first-child.html
   parent: root
 
 domain_root:
   title: domain root page
   path: domain-root
+  route_path:
   domain: www.example.com
+
+page_with_containers:
+  title: page with containers
+  path: page-with-containers
+  template: |
+    <div id="main">
+    {% contains item in main %}
+      {{item.title}}
+    {% endcontains %}
+    </div>
+    <div id="left">
+    {% contains item in left %}
+      {{item.title}}
+    {% endcontains %}
+    </div>
+
+page_without_containers:
+  title: page without containers
+  path: page-without-containers
+  template: |
+    <div id="foo">
+    </div>
+

@@ -10,13 +10,17 @@ class Page < ActiveRecord::Base
   validates_uniqueness_of :path, :scope => :parent_id
   
   # FIXME untested
-  validates_uniqueness_of :domain, :scope => :route_path
+  validates_uniqueness_of :domain, :scope => :route_path, :allow_blank => true
   
   before_save :generate_path_if_blank
   before_save :copy_domain_from_parent_if_blank
   before_save :generate_route_path
   
   named_scope :roots, :conditions => { :parent_id => nil }
+  
+  def content_by_container(container)
+    contents.find_all_by_container(container, :include => :content_definition)
+  end
   
   # FIXME untested
   def template?
@@ -40,6 +44,11 @@ class Page < ActiveRecord::Base
     end
   end
   
+  # TODO refactor, ugly and long nested
+  def containers
+    t = Liquid::Template.parse(template)
+    t.root.nodelist.select{ |t| t.kind_of? LiquidTags::ContainsBlock }.collect{ |c| c.container_name }
+  end
   
   # FIXME untested
   def to_liquid

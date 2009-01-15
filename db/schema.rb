@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090112230744) do
+ActiveRecord::Schema.define(:version => 20090114231223) do
 
   create_table "attribute_definitions", :force => true do |t|
     t.integer  "content_definition_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20090112230744) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "container"
   end
 
   create_table "pages", :force => true do |t|

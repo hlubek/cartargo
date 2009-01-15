@@ -29,6 +29,7 @@ ActionController::Routing::Routes.draw do |map|
     backend.resources :pages do |page|
       page.resources :pages, :as => 'children'
       page.resources :content_definitions
+      page.resources :contents
     end
   end
 

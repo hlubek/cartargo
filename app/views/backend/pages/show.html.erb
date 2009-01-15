@@ -8,6 +8,23 @@
 </ul>
 <%= link_to t(:new_record, :name => t(:content_definition)), new_backend_page_content_definition_path(@page) %>
 
+<h2><%=t :containers %></h2>
+<div class="containers">
+<% for container in @page.containers %>
+<div class="container">
+<h3><%=h container %></h3>
+<ul>
+<% for content in @page.content_by_container(container) %>
+<li><%=h content.content_definition.title %> (<%=h content['title'] %>)</li>
+<% end %>
+</ul>
+<p>
+<%= link_to t(:new_content), new_backend_page_content_path(@page, :container => container) %>
+</p>
+</div>
+<% end %>
+</div>
+
 <h2><%=t :informations %></h2>
 <dl class="info">
 <dt><%=t :domain %></dt><dd>
