@@ -1,4 +1,6 @@
 module Backend::PagesHelper
+  include Backend::BackendHelper
+  
   # FIXME untested
   def tree_ul(acts_as_tree_set, init = true, &block)
     if acts_as_tree_set.size > 0

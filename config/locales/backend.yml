@@ -1,11 +1,9 @@
 de:
-  page: Seite
   domain: Domain
   path: Pfad
   route_path: Routing-Pfad
   created: Erstellt
   updated: Zuletzt geändert
-  page_header: Seite "{{title}}"
   edit_page_header: Seite "{{title}}" bearbeiten
   new_child_page: Neue Unterseite anlegen
   new_page_header: Neue Seite anlegen
@@ -21,7 +19,7 @@ de:
   save: Speichern
   add_attribute: Attribut hinzufügen
   attribute_definitions: Attribut-Definitionen
-  content_definitions: Content-Definitionen
+  
   content_definition: Content-Definition
   content: Content
   attribute_values: Attributwerte
@@ -31,4 +29,13 @@ de:
   name: Name
   type: Typ
   options: Optionen
-  remove: entfernen  
+  remove: entfernen
+  page: Seite
+  pages:
+    header: Seite "{{title}}"
+    container_insert_new_record: Neuen Inhalt einfügen
+    content_definitions: Content-Definitionen
+  content_definitions:
+    title: Name
+    created_at: Angelegt
+    updated_at: Geändert

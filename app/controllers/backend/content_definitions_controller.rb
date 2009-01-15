@@ -19,7 +19,7 @@ class Backend::ContentDefinitionsController < ApplicationController
   	
   	if @content_definition.save
 		flash[:notice] = t(:created_record, :name => t(:content_definition))
-		redirect_to backend_page_content_definition_path(@path, @content_definition)
+		redirect_to @page
 	else
 		render :action => 'new'
 	end

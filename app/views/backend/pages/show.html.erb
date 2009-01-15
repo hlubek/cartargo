@@ -1,11 +1,21 @@
-<h1><%=t :page_header, :title => @page.title %></h1>
+<h1><%=t :'pages.header', :title => @page.title %></h1>
 
-<h2><%=t :content_definitions %></h2>
-<ul>
-<% for content_definition in @page.content_definitions %>
-<li><%= link_to h(content_definition.title), edit_backend_page_content_definition_path(@page, content_definition) %></li>
+<h2><%=t :'pages.content_definitions' %></h2>
+
+<% if !@page.content_definitions.empty? %>
+
+<% render_datatable @page.content_definitions do |d| %>
+  <% d.column :title, { :label => t(:'content_definitions.title'), :sortable => true } do |c| %>
+    <%= link_to h(c.title), edit_backend_page_content_definition_path(@page, c) %>
+  <% end %>
+  <% d.column :created_at, :label => t(:'content_definitions.created_at'), :parser => 'date' do |c| %>
+    <%= c.created_at.strftime('%m/%d/%y') %>
+  <% end %>
 <% end %>
-</ul>
+
+<% end %>
+
+
 <%= link_to t(:new_record, :name => t(:content_definition)), new_backend_page_content_definition_path(@page) %>
 
 <h2><%=t :containers %></h2>
@@ -19,7 +29,7 @@
 <% end %>
 </ul>
 <p>
-<%= link_to t(:new_content), new_backend_page_content_path(@page, :container => container) %>
+<%= link_to t(:'pages.container_insert_new_record'), new_backend_page_content_path(@page, :container => container) %>
 </p>
 </div>
 <% end %>

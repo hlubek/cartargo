@@ -1,0 +1,45 @@
+<div id="<%= name.pluralize %>-container">
+<table id="<%= name.pluralize %>">
+<thead>
+<tr>
+<% for column in columns %>
+<th><%=h column.label %></th>
+<% end %>
+</tr>
+</thead>
+<tbody>
+<% for record in associated %>
+<tr>
+<% for column in columns %>
+<td><%= column.content(record) %></td>
+<% end %>
+</tr>
+<% end %>
+</tbody>
+</table>
+<script type="text/javascript">
+YAHOO.util.Event.addListener(window, "load", function() {
+var myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("<%= name.pluralize %>"));
+myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+myDataSource.responseSchema = {
+    fields: [
+<% for column in columns -%>
+{key: "<%= column.method.to_s %>"
+    <% if column.options[:parser] %>
+      , parser: "<%= column.options[:parser] %>"
+    <% end %>},
+<% end -%>
+    ]
+};
+
+var myColumnDefs = [
+<% for column in columns %>
+    {key: "<%= column.method.to_s %>", label: "<%= column.label %>"},
+<% end %>
+];
+
+var myDataTable = new YAHOO.widget.DataTable("<%= name.pluralize %>-container",
+	myColumnDefs, myDataSource);
+});
+</script>
+</div>
