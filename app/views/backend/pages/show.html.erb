@@ -25,11 +25,13 @@
 <% for container in @page.containers %>
 <div class="container">
 <h3><%=h container %></h3>
-<ul id=">
+<ul id="<%= container %>_list" style="cursor: move">
 <% for content in @page.content_by_container(container) %>
-<li><%=h content.content_definition.title %> (<%=h content['title'] %>)</li>
+<li id="content_<%= content.id %>"><%=h content.content_definition.title %> (<%=h content['title'] %>)</li>
 <% end %>
 </ul>
+
+<%= sortable_element "#{container}_list", :url => {:action => "sort_content", :id => @page, :container => container}, :complete => visual_effect(:highlight, "#{container}_list") %>
 
 <script type="text/javascript">
 YAHOO.util.Event.onContentReady("<%= container %>-menu", function () {

@@ -47,6 +47,17 @@ class Backend::PagesController < ApplicationController
       render :action => 'edit'
     end
   end
+  
+  def sort_content
+    @page = Page.find params[:id]
+    container = params[:container]
+    list = params["#{container}_list"]
+    @page.content_by_container(container).each do |c|
+      c.position = list.index(c.id.to_s) + 1
+      c.save
+    end
+    render :text => "ok"
+  end
 
 private
   def load_roots
