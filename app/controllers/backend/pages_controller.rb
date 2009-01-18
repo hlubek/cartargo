@@ -6,7 +6,7 @@ class Backend::PagesController < ApplicationController
   end
 
   def show
-   @page = Page.find params[:id]
+   @page = Page.with_contents.find(params[:id])
   end
 
   def new
@@ -39,7 +39,7 @@ class Backend::PagesController < ApplicationController
 
   # FIXME untested
   def update
-    @page = Page.find(params[:id])
+    @page = Page.find params[:id]
     if @page.update_attributes(params[:page])
       flash[:notice] = t(:updated_record, :name => t(:page))
       redirect_to backend_page_path(@page)
@@ -57,6 +57,15 @@ class Backend::PagesController < ApplicationController
       c.save
     end
     render :text => "ok"
+  end
+  
+  def move_content
+    content_id = params[:id].split('_').last
+    content = Content.find(content_id)
+    content.update_attributes(:container => params[:container])
+
+    @page = Page.with_contents.find(params[:page_id])
+    render :partial => 'containers'
   end
 
 private

@@ -5,9 +5,18 @@ class Content < ActiveRecord::Base
   
   acts_as_list :scope => :page
   
-  def [](key)
-    av = attribute_values.select{ |av| av.attribute_definition.name == key.to_s }.first
-    av.value if av
+  validates_presence_of :content_definition
+  
+  def label
+    hash = to_liquid
+    hash['title'] if hash['title']
   end
   
+  def to_liquid
+    hash = {} # { :content_definition => content_definition }
+    attribute_values.each do |av|
+      hash[av.attribute_definition.name] = av.value
+    end
+    hash
+  end
 end

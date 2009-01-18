@@ -35,7 +35,7 @@ module LiquidTags
         @attributes = {}
         markup.scan(Liquid::TagAttributes) do |key, value|
           @attributes[key] = value
-        end        
+        end
       else
         raise SyntaxError.new("Syntax Error in 'contains block' - Valid syntax: contains [item] in [container]")
       end
@@ -45,8 +45,10 @@ module LiquidTags
   
     def render(context)        
       context.registers[:contains] ||= Hash.new(0)
-    
-      container = context['container'][@container_name]
+
+      return 'no container set' if context.registers[:container].nil?
+
+      container = context.registers[:container][@container_name]
     
       return '' if container.nil? or container.empty?
     
@@ -55,7 +57,7 @@ module LiquidTags
       if @attributes['limit'] or @attributes['offset']
         offset = 0
         if @attributes['offset'] == 'continue'
-          offset = context.registers[:for][@name] 
+          offset = context.registers[:contains][@name] 
         else          
           offset = context[@attributes['offset']] || 0
         end
@@ -71,7 +73,7 @@ module LiquidTags
             
       result = []
       segment = container[range]
-      return '' if segment.nil?        
+      return '' if segment.nil?
 
       context.stack do 
         length = segment.length

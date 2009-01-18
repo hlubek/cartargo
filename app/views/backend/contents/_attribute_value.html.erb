@@ -1,6 +1,8 @@
 <div class="attribute_value">
 <%= f.error_messages %>
-<%=h attribute_value.attribute_definition.name %>
-<%= f.text_field :value %>
+<dl>
+<dt><%= f.label :value, attribute_value.attribute_definition.name.capitalize %></dt>
+<dd><%= f.text_field :value %></dd>
+</dl>
 <%= f.hidden_field :attribute_definition_id %>
 </div>

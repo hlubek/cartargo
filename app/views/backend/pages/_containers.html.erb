@@ -1,0 +1,43 @@
+<div id="containers" class="containers">
+  <% for container in @page.containers %>
+    <div id="container_<%= container %>" class="container">
+      <h3><%=h container %></h3>
+      <ul id="<%= container %>_list" class="contents">
+      <% for content in @page.content_by_container(container) %>
+      <li id="content_<%= content.id %>" class="content">
+      <span class="content-definition-title"><%=h content.content_definition.title %></span>
+      (<%=h content.label %>)
+      </li>
+      <% end %>
+      </ul>
+      <%= sortable_element "#{container}_list", :url => { :action => "sort_content", :id => @page, :container => container }, :complete => visual_effect(:highlight, "#{container}_list") %>
+      <!-- TODO Sorting triggers the drop receiver, too -->
+      <%= drop_receiving_element("container_#{container}", :update => "containers", :accept => "content", :hoverclass => "drop-over", :url => { :action => "move_content", :page_id => @page, :container => container }) %>
+      
+      
+      <script type="text/javascript">
+      YAHOO.util.Event.onContentReady("<%= container %>-menu", function () {
+          var oMenu = new YAHOO.widget.Menu("<%= container %>-menu", { context: ["<%= container %>-toggle-menu", "tl", "tl"] });
+          oMenu.render();
+          YAHOO.util.Event.addListener("<%= container %>-toggle-menu", "click", oMenu.show, null, oMenu);
+      });    
+      </script>
+      
+      <div class="link-control">
+        <div class="bd"><a href="#" id="<%= container %>-toggle-menu"><%=t :new_record, :name => t(:content) %></a></div>
+      </div>
+      
+      <div id="<%= container %>-menu" class="yuimenu">
+      <div class="bd">
+      <ul class="first-of-type">
+      <% for content_definition in @page.inherited_content_definitions %>
+      <li class="yuimenuitem"><%= link_to t(:'pages.add_content', :name => content_definition.title), new_backend_page_content_path(@page, :container => container, :content_definition_id => content_definition.id), :html => { :class => 'yuimenuitemlabel' } %></li>
+      <% end %>
+      </ul>
+      </div>
+      </div>
+      
+      <hr class="clearer" />
+    </div>
+  <% end %>
+</div>

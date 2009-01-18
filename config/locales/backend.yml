@@ -37,6 +37,7 @@ de:
     content_definitions: Content-Definitionen
     containers: Container
     add_content: "{{name}} einfügen"
+    global: Global
   content_definitions:
     title: Name
     created_at: Angelegt
@@ -44,3 +45,5 @@ de:
   contents:
     attribute_values: Attributwerte
     content_definition: Content-Definition
+  menu:
+    pages: Seiten

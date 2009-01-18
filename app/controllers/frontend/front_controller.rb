@@ -10,7 +10,7 @@ class Frontend::FrontController < ApplicationController
     elsif request.domain.blank?
       @page = Page.find_by_route_path_and_domain(params[:path].join('/'), nil)
     else
-      @page = Page.find_by_route_path_and_domain(params[:path], request.domain)
+      @page = Page.with_contents.find_by_route_path_and_domain(params[:path], request.domain)
     end
 
     @domain = request.domain   
@@ -19,7 +19,11 @@ class Frontend::FrontController < ApplicationController
       render :template => 'frontend/front/404', :status => :not_found 
     else
       if @page.template
-        render :text => Liquid::Template.parse(@page.template).render({ 'page' => @page }, :registers => { :controller => self })
+        container = {}
+      	@page.containers.each do |c|
+      	  container[c] = @page.content_by_container(c)
+      	end
+        render :text => Liquid::Template.parse(@page.template).render({ 'page' => @page }, :registers => { :controller => self, :container => container })
       else
         # render :error => 'No template'
       end

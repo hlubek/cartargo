@@ -17,9 +17,10 @@ class Page < ActiveRecord::Base
   before_save :generate_route_path
   
   named_scope :roots, :conditions => { :parent_id => nil }
+  named_scope :with_contents, :include => { :contents => [:content_definition, {:attribute_values => :attribute_definition}] }
   
   def content_by_container(container)
-    contents.find_all_by_container(container, :include => :content_definition)
+    contents.select{ |c| c.container == container }
   end
   
   def inherited_content_definitions
