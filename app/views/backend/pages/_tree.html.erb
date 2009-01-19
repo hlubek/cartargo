@@ -12,7 +12,7 @@ end %>
 </li>
 </ul>
 <script type="text/javascript">
-YAHOO.util.Event.addListener(window, "load", function() {
+YAHOO.util.Event.onContentReady("page-tree", function () {
 var tree = new YAHOO.widget.TreeView("page-tree");
 tree.getRoot().expandAll();
 tree.render();

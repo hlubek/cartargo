@@ -18,4 +18,8 @@ module Backend::PagesHelper
       ret += '</ul>'
     end
   end
+  
+  def content_in_containers_except(container)
+    @page.containers.select{ |c| c != container }.collect{ |c| "content_in_container_#{c}" }
+  end
 end

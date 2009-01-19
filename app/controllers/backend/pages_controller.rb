@@ -51,21 +51,23 @@ class Backend::PagesController < ApplicationController
   def sort_content
     @page = Page.find params[:id]
     container = params[:container]
-    list = params["#{container}_list"]
-    @page.content_by_container(container).each do |c|
-      c.position = list.index(c.id.to_s) + 1
-      c.save
+    params["#{container}_list"].each_with_index do |id, position|
+      content = @page.contents.find_by_id_and_container(id, container)
+      content.update_attributes(:position => position + 1) if content
     end
-    render :text => "ok"
+    render :nothing => true
   end
   
   def move_content
     content_id = params[:id].split('_').last
     content = Content.find(content_id)
-    content.update_attributes(:container => params[:container])
-
-    @page = Page.with_contents.find(params[:page_id])
-    render :partial => 'containers'
+    if content.container != params[:container]
+      content.update_attributes(:container => params[:container])
+      @page = Page.with_contents.find(params[:page_id])
+    end
+    respond_to do |format|
+      format.js # render move_content.rjs
+    end      
   end
 
 private

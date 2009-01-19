@@ -1,0 +1,3 @@
+if @page
+  page.replace_html 'containers', :partial => 'containers'
+end

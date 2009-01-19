@@ -4,7 +4,7 @@
       <h3><%=h container %></h3>
       <ul id="<%= container %>_list" class="contents">
       <% for content in @page.content_by_container(container) %>
-      <li id="content_<%= content.id %>" class="content">
+      <li id="content_<%= content.id %>" class="content <%= "content_in_container_#{container}" %>">
       <span class="content-definition-title"><%=h content.content_definition.title %></span>
       (<%=h content.label %>)
       </li>
@@ -12,7 +12,7 @@
       </ul>
       <%= sortable_element "#{container}_list", :url => { :action => "sort_content", :id => @page, :container => container }, :complete => visual_effect(:highlight, "#{container}_list") %>
       <!-- TODO Sorting triggers the drop receiver, too -->
-      <%= drop_receiving_element("container_#{container}", :update => "containers", :accept => "content", :hoverclass => "drop-over", :url => { :action => "move_content", :page_id => @page, :container => container }) %>
+      <%= drop_receiving_element("container_#{container}", :accept => content_in_containers_except(container), :hoverclass => "drop-over", :url => { :action => "move_content", :page_id => @page, :container => container }) %>
       
       
       <script type="text/javascript">

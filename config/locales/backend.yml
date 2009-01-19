@@ -39,6 +39,9 @@ de:
     add_content: "{{name}} einfügen"
     global: Global
   content_definitions:
+    form:
+      base: Basis
+      attribute_definitions: Attribut-Definitionen
     title: Name
     created_at: Angelegt
     updated_at: Geändert

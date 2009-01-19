@@ -4,13 +4,15 @@ class Frontend::FrontController < ApplicationController
   include Frontend::FrontHelper
 
   def show
-    if params[:path].blank? and request.domain.blank?
+    path = params[:path].blank? ? nil : params[:path].join('/')
+    
+    if path and request.domain.blank?
       # Find first root page
       @page = Page.find_by_parent_id_and_domain(nil, nil)
     elsif request.domain.blank?
-      @page = Page.find_by_route_path_and_domain(params[:path].join('/'), nil)
+      @page = Page.find_by_route_path_and_domain(path, nil)
     else
-      @page = Page.with_contents.find_by_route_path_and_domain(params[:path], request.domain)
+      @page = Page.with_contents.find_by_route_path_and_domain(path, request.domain)
     end
 
     @domain = request.domain   

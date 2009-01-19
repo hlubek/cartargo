@@ -8,6 +8,11 @@ module Frontend::FrontHelper
       domain = page.domain      
     end
     
-    url_for(:controller => 'frontend/front', :action => 'show', :path => route_path, :host => domain, :port => 3000)
+    #url = url_for(:controller => 'frontend/front', :action => 'show', :host => domain, :port => 3000)
+    #url + route_path if route_path
+    
+    port = AppConfig.frontend && AppConfig.frontend.port ? ":" + AppConfig.frontend.port.to_s : ''
+    path = route_path ? route_path : ''
+    "http://" + domain + port + "/" + path
   end
 end

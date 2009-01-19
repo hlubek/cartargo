@@ -246,15 +246,22 @@ div.link-control .bd {
 }
 
 fieldset {
-  border: 1px solid gray;
+  border: 1px solid #CADDEC;
+  margin-right: 2em;
 }
 
 fieldset legend {
+  color: #51606B;
   font-size: 116%;
   font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
   font-weight: bold;
+  margin: 0 1em 0 1em;
+  padding: 0 0.5em 0 0.5em;
 }
 
 fieldset dl dt label {
   font-weight: bold;
+}
+fieldset dl dd {
+  margin: 0 0 0.5em 0;
 }

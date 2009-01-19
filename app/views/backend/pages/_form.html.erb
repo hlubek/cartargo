@@ -1,17 +1,17 @@
 <%= f.error_messages %>
-<p>
-  <%= f.label :title %><br />
-  <%= f.text_field :title %>
-</p>
-<p>
-  <%= f.label :domain %><br />
-  <%= f.text_field :domain %>
-</p>
-<p>
-  <%= f.label :path %><br />
-  <%= f.text_field :path %>
-</p>
-<p>
-  <%= f.label :template %><br />
-  <%= f.text_area :template, :rows => 40, :cols => 80 %>
-</p>
+<fieldset style="width: 45em">
+<legend><%=t :'pages.form.information' %></legend>
+<dl>
+<dt><%= f.label :title %></dt>
+<dd><%= f.text_field :title %></dd>
+
+<dt><%= f.label :domain %></dt>
+<dd><%= f.text_field :domain %></dd>
+
+<dt><%= f.label :path %></dt>
+<dd><%= f.text_field :path %></dd>
+
+<dt><%= f.label :template %></dt>
+<dd><%= f.text_area :template, :rows => 40, :cols => 80 %></dd>
+</dl>
+</fieldset>
