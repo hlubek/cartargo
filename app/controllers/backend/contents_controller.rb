@@ -1,6 +1,4 @@
-class Backend::ContentsController < ApplicationController
-  layout "backend/standard-layout"
-
+class Backend::ContentsController < Backend::BackendController
   before_filter :load_page
 
   def index

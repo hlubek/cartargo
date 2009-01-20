@@ -13,7 +13,7 @@ class Content < ActiveRecord::Base
   end
   
   def to_liquid
-    hash = {} # { :content_definition => content_definition }
+    hash = { 'type' => content_definition.title } # { :content_definition => content_definition }
     attribute_values.each do |av|
       hash[av.attribute_definition.name] = av.value
     end

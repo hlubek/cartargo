@@ -1,7 +1,4 @@
-class Backend::PagesController < ApplicationController
-
-  before_filter :load_roots
-
+class Backend::PagesController < Backend::BackendController
   def index
   end
 
@@ -69,10 +66,4 @@ class Backend::PagesController < ApplicationController
       format.js # render move_content.rjs
     end      
   end
-
-private
-  def load_roots
-    @roots = Page.roots
-  end
-
 end

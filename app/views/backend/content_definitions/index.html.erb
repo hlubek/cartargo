@@ -1,2 +1,31 @@
-<h1>Backend::ContentDefinitions#index</h1>
-<p>Find me in app/views/backend/content_definitions/index.html.erb</p>
+<h1><%=t :'pages.header', :title => @page.title %></h1>
+
+<h2><%=t :'pages.content_definitions' %></h2>
+
+<% if !@page.content_definitions.empty? %>
+<% render_datatable @page.content_definitions do |d| %>
+  <% d.column :title, { :label => t(:'content_definitions.title'), :sortable => true } do |c| %>
+    <%= link_to h(c.title), edit_backend_page_content_definition_path(@page, c) %>
+  <% end %>
+  <% d.column :created_at, :label => t(:'content_definitions.created_at'), :parser => 'date' do |c| %>
+    <%= c.created_at.strftime('%m/%d/%y') %>
+  <% end %>
+<% end %>
+<% end %>
+
+<div class="link-control">
+<div class="bd">
+<%= link_to t(:new_record, :name => t(:content_definition)), new_backend_page_content_definition_path(@page) %>
+</div>
+</div>
+<hr class="clearer" />
+
+<h2><%=t :'content_definitions.inherited' %></h2>
+
+<ul>
+<% for c in (@page.inherited_content_definitions - @page.content_definitions) %>
+<li>
+<%= link_to h(c.title), edit_backend_page_content_definition_path(c.page, c) %>
+</li>
+<% end %>
+</ul>

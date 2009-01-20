@@ -3,4 +3,12 @@ module ApplicationHelper
   def t_boolean(b)
     t(b.to_s.to_sym)
   end
+  
+  def c(condition, string)
+    if condition
+      string
+    else
+      ''
+    end
+  end
 end

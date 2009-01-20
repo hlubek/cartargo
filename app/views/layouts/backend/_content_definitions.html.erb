@@ -1,0 +1,10 @@
+<div id="page-tree">
+<%= render :partial => 'backend/shared/tree',
+           :locals => {
+             :tree_global_path => :backend_pages_path,
+             :tree_page_path => :backend_page_content_definitions_path
+           } if @roots %>
+</div>
+<div id="page-content">
+<%= yield %>
+</div>

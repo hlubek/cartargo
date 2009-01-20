@@ -1,29 +1,5 @@
 <h1><%=t :'pages.header', :title => @page.title %></h1>
 
-<h2><%=t :'pages.content_definitions' %></h2>
-
-<% if !@page.content_definitions.empty? %>
-<% render_datatable @page.content_definitions do |d| %>
-  <% d.column :title, { :label => t(:'content_definitions.title'), :sortable => true } do |c| %>
-    <%= link_to h(c.title), edit_backend_page_content_definition_path(@page, c) %>
-  <% end %>
-  <% d.column :created_at, :label => t(:'content_definitions.created_at'), :parser => 'date' do |c| %>
-    <%= c.created_at.strftime('%m/%d/%y') %>
-  <% end %>
-<% end %>
-<% end %>
-
-<div class="link-control">
-<div class="bd">
-<%= link_to t(:new_record, :name => t(:content_definition)), new_backend_page_content_definition_path(@page) %>
-</div>
-</div>
-<hr class="clearer" />
-
-<h2><%=t :'pages.containers' %></h2>
-<%= render :partial => 'containers' %>
-
-
 <h2><%=t :informations %></h2>
 <dl class="info">
 <dt><%=t :domain %></dt><dd>
@@ -45,7 +21,6 @@
 <dt><%=t :updated %></dt><dd><%=h time_ago_in_words(@page.updated_at) %> (<%=l @page.updated_at, :format => :short %>)</dd>
 </dl>
 <hr class="clearer" />
-
 
 
 <p><%= link_to t(:edit_record, :name => t(:page)), edit_backend_page_path(@page) %></p>

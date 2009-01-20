@@ -3,6 +3,8 @@ require 'liquid_tags'
 class Frontend::FrontController < ApplicationController
   include Frontend::FrontHelper
 
+  layout nil
+
   def show
     path = params[:path].blank? ? nil : params[:path].join('/')
     

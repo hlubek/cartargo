@@ -16,7 +16,7 @@ class Page < ActiveRecord::Base
   before_save :copy_domain_from_parent_if_blank
   before_save :generate_route_path
   
-  named_scope :roots, :conditions => { :parent_id => nil }
+  named_scope :roots, :conditions => { :parent_id => nil }, :order => 'title'
   named_scope :with_contents, :include => { :contents => [:content_definition, {:attribute_values => :attribute_definition}] }
   
   def content_by_container(container)

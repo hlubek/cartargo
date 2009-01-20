@@ -1,7 +1,5 @@
 # FIXME untested
-class Backend::ContentDefinitionsController < ApplicationController
-  layout "backend/standard-layout"
-
+class Backend::ContentDefinitionsController < Backend::BackendController
   before_filter :load_page
 
   def index

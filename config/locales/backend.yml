@@ -14,6 +14,7 @@ de:
   'false': nein
   'true': ja
   edit_record: "{{name}} bearbeiten"
+  edit_titled_record: '{{name}} "{{title}}" bearbeiten'
   new_record: "{{name}} anlegen"
   back: zurück
   save: Speichern
@@ -43,6 +44,7 @@ de:
       base: Basis
       attribute_definitions: Attribut-Definitionen
     title: Name
+    inherited: Geerbte Definitionen
     created_at: Angelegt
     updated_at: Geändert
   contents:
@@ -50,3 +52,6 @@ de:
     content_definition: Content-Definition
   menu:
     pages: Seiten
+    content_definitions: Definitionen
+    contents: Inhalte
+    

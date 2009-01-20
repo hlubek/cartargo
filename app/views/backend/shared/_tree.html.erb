@@ -1,0 +1,21 @@
+<ul>
+<li>
+<%= link_to_unless_current(t(:'pages.global'), send(tree_global_path) ) %>
+<%= tree_ul(@roots) do |page, list_options|
+#  if @page == page
+#    list_options[:class] = 'active-show'
+#  end
+#  elsif current_page?(edit_backend_page_path(page))
+#    list_options[:class] = 'active-edit'
+#  end
+  link_to_unless(@page == page, h(page.title), send(tree_page_path, page))
+end %>
+</li>
+</ul>
+<script type="text/javascript">
+YAHOO.util.Event.onContentReady("page-tree", function () {
+var tree = new YAHOO.widget.TreeView("page-tree");
+tree.getRoot().expandAll();
+tree.render();
+});
+</script>
